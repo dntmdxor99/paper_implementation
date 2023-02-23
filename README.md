@@ -1,1 +1,1 @@
-this is pytorch study repository
+파이토치로 논문 구현
