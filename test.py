@@ -11,15 +11,15 @@ if not os.path.exists(path2data):
     os.mkdir(path2data)
 
 training_data = datasets.FashionMNIST(
-    root = 'path2data',     # 데이터를 저장할 경로
-    train = True,       # 
-    download = True,
-    transform = ToTensor()
+    root = path2data,     # 데이터를 저장할 경로
+    train = True,       # 학습 데이터를 저장할지 여부
+    download = True,        # 경로에 데이터가 없으면 다운로드
+    transform = ToTensor()      # 받아온 데이터를 텐서로 변환
 )
 
 test_data = datasets.FashionMNIST(
-    root = 'path2data',
-    train = False,
+    root = path2data,
+    train = False,      # 테스트 데이터를 받아옴
     download = True,
     transform = ToTensor()
 )
@@ -51,7 +51,6 @@ plt.show()
 import os
 import pandas as pd
 from torchvision.io import read_image
-from torch.utils.data import Dataset
 
 class CustomImageDataset(Dataset):
     def __init__(self, annotations_file, img_dir, transform=None, target_transform=None):
@@ -72,7 +71,7 @@ class CustomImageDataset(Dataset):
         if self.target_transform:
             label = self.target_transform(label)
         return image, label
-    
+
 
 from torch.utils.data import DataLoader
 
@@ -88,3 +87,5 @@ label = train_labels[0]
 plt.imshow(img, cmap="gray")
 plt.show()
 print(f"Label: {label}")
+
+)
